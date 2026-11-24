@@ -11,5 +11,18 @@ const LINE_2 =
   "Waiting turned a twenty-minute surgery into a year of chemo, and that was the year your daughter learned to walk while you lay in a hospital bed.";
 
 const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
+const entry = `${LINE_1}\n${LINE_2}`;
+
+// Gate mirror: the entry must be exactly two non-empty lines, 1-280 chars.
+// Fail loudly instead of writing an invalid entry.
+const lines = entry.split("\n");
+if (lines.length !== 2 || lines.some((line) => line.trim().length === 0)) {
+  console.error("entry must be exactly two non-empty lines");
+  process.exit(1);
+}
+if (entry.length < 1 || entry.length > 280) {
+  console.error(`entry is ${entry.length} characters; the gate allows 1-280`);
+  process.exit(1);
+}
 mkdirSync(outDir, { recursive: true });
-writeFileSync(join(outDir, "entry.txt"), `${LINE_1}\n${LINE_2}`, "utf8");
+writeFileSync(join(outDir, "entry.txt"), entry, "utf8");
