@@ -1,0 +1,1 @@
+{"description":"Two Lines to Your Past Self — make.fun bounty entry (program/v1). Writes a two-line warning to the writer's past self to /output/entry.txt.","engines":{"node":">=22"},"license":"MIT","main":"main.ts","name":"two-lines-past-self-20261124","scripts":{"start":"node main.ts"},"type":"module","version":"1.0.0"}
